@@ -1,0 +1,55 @@
+body{
+    background-color:tan;
+}
+
+.container{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 88vh;
+    justify-content: center;
+}
+
+.colour-choices{
+    background-color:black;
+    display: flex;
+    gap : 1.5vw;
+    padding: 2vh 2vw;
+    border-radius: 2vw;
+}
+
+.colour-circle{
+    height : 7vh;
+    width: 7vh;
+    border-radius: 7vh;
+    border: 0;
+}
+
+.board{
+    height: 125vh;
+    background-color: #393939;
+    width : calc(56vh + 14.5vw);
+    margin-left: calc((98.8vw - (56vh + 14.5vw))/2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tab{
+    
+}
+
+.input{
+    display: flex;
+    gap: 1vw;
+    background-color: black;
+}
+
+.output{
+
+}
+
+.jFMargin{
+    background-color: tan;
+    height: 13.5vh;
+}

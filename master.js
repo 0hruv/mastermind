@@ -130,7 +130,7 @@ function submit()
                 if (humanInput[i] == code[i])
                 {
                     correctPosition++;
-                    humanInput.splice(i,1);
+                    humanInput[i] = "null";
                 }
             }
 
@@ -163,6 +163,20 @@ function submit()
 
             circleNumber = 0;
             turn++;
+            
+            if (correctPosition == 5)
+            {
+                alert("you win!");
+                game = "off";
+                showFinalCode();
+            }
+            else if (turn > 14 )
+            {
+                alert("You lose !");
+                game  = "off";
+                showFinalCode();
+            }
+            
             hideSubmitButton();
 
         }
@@ -183,6 +197,16 @@ function setCode()
     }
 
     console.log(code);
+
+    let hiddenCode = document.querySelector(".hidden");
+    for (let i = 0 ; i < 5 ; i++)
+    {
+        let codeCircle = document.createElement("div");
+        codeCircle.className = "colour-circle";
+        codeCircle.style.backgroundColor = code[i];
+
+        hiddenCode.appendChild(codeCircle);
+    }
 }
 
 
@@ -241,4 +265,10 @@ function hideSubmitButton()
 {
     let submitButton = document.querySelector(".submit")
     submitButton.style.visibility = "hidden";
+}
+
+function showFinalCode(){
+    let hiddenStuff = document.querySelector(".hidden");
+    hiddenStuff.style.display = "flex";
+    window.scrollTo(0,0);
 }

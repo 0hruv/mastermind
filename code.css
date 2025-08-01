@@ -82,3 +82,24 @@ body{
     background-color: lightblue;
     height: 13.5vh;
 }
+
+.side-button{
+    font-size: 4vh;
+    font-weight: 700;
+    border: 1vh solid peru;
+    background-color: burlywood;
+    padding : 1vh 1vw ;
+    color: peru;
+    position:fixed;
+    bottom : 45vh;
+    border-radius: 1vh;
+}
+
+.submit{
+    right : 10vw;
+    visibility: hidden;
+}
+
+.delete{
+    left : 10vw;
+}

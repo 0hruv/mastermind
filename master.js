@@ -5,6 +5,9 @@ let turn = 0;
 
 let colours = ["red", "green", "blue", "yellow", "orange", "pink", "purple" , "white"];
 
+let code = [];
+setCode();
+
 let colourChoice = document.querySelector(".colour-choices");
 for (colour of colours)
 {
@@ -17,14 +20,14 @@ for (colour of colours)
         {
             if (circleNumber < 5)
             {
-            let circleToFill = document.getElementById(`circle${turn}${circleNumber}`);
+            let circleToFill = document.getElementById(`circle${turn}${circleNumber}`);//human input
             circleToFill.style.backgroundColor = temp.style.backgroundColor;
             console.log(circleToFill.id);
             circleNumber++;
 
             if (circleNumber == 5)
             {
-                sumbit();
+                showSubmitButton();
             }
             }   
         }
@@ -33,7 +36,7 @@ for (colour of colours)
 }
 
 
-let board = document.querySelector(".board")
+let board = document.querySelector(".board")//making the board
 {
     for (let i = 14 ; i >= 0 ; i-- )
     {
@@ -50,8 +53,6 @@ let board = document.querySelector(".board")
             circle.style.backgroundColor = "peru"
             circle.style.opacity = "0.75";
             circle.id = `circle`+i+j;
-            console.log(circle.id);
-
       
             input.appendChild(circle);
             
@@ -80,8 +81,112 @@ let board = document.querySelector(".board")
     }
 }
 
+let submitButton = document.querySelector(".submit")
+submitButton.addEventListener("click",()=>{
+        submit();
+})
 
-function sumbit()
+let deleteButton = document.querySelector(".delete")
+deleteButton.addEventListener("click",()=>{
+    if (game == "on")
+    {
+        if (circleNumber>0)
+        {
+            circleNumber--;
+        }
+
+        let circleToDelete = document.getElementById(`circle`+turn+circleNumber);
+        circleToDelete.style.backgroundColor = "peru";
+
+        hideSubmitButton();
+    }
+})
+
+
+function submit()
+{
+    if (game == "on")
+    {
+        if (circleNumber == 5)
+        {
+            let humanInput = [];           
+
+            for (let i = 0 ; i < 5 ; i++)
+            {
+                let temp = document.getElementById(`circle${turn}${i}`);
+                humanInput[i] = temp.style.backgroundColor;
+                console.log(humanInput[i]);
+            }
+
+            console.log('inside submit');
+            console.log(humanInput);
+            console.log(code);
+
+            let correctPosition = 0;
+            let correctColor = 0;
+
+            for (let i = 0 ; i < 5 ; i++)
+            {
+                if (humanInput[i] == code[i])
+                {
+                    correctPosition++;
+                    humanInput.splice(i,1);
+                }
+            }
+
+            for (a = 0 ; a < 5 ; a++)
+            {
+                let colorToCheck = code[a];
+                for (humanColor of humanInput)
+                {
+                    if (humanColor == colorToCheck)
+                    {
+                        correctColor++;
+                    }
+                }
+            }
+
+            let dotsToFill  = 0;
+            while ( dotsToFill < correctPosition )
+            {
+                let correctPositionDot = document.getElementById("dot"+turn+dotsToFill);
+                correctPositionDot.style.background = "red";
+                dotsToFill++;
+            }
+
+            while ( dotsToFill < correctColor + correctPosition )
+            {
+                let correctPositionDot = document.getElementById("dot"+turn+dotsToFill);
+                correctPositionDot.style.background = "white";
+                dotsToFill++;
+            }
+
+            circleNumber = 0;
+            turn++;
+            hideSubmitButton();
+
+        }
+    }
+}
+
+function setCode()
+{
+    let colourCopy = colours.slice();
+
+    let sizeOfCopy = colourCopy.length;
+    for (let i = 0 ; i < 5 ;i++)
+    {
+        let randomPosition = Math.floor(Math.random()*(sizeOfCopy-0.00001));
+        code[i] = colourCopy[randomPosition];
+        colourCopy.splice(randomPosition,1);
+        sizeOfCopy--;
+    }
+
+    console.log(code);
+}
+
+
+function showSubmitButton()
 {
     if (game == "on")
     {
@@ -122,6 +227,8 @@ function sumbit()
                 }
 
             }
+                let submitButton = document.querySelector(".submit")
+                submitButton.style.visibility = "visible";
 
             console.log("check");
 
@@ -130,7 +237,8 @@ function sumbit()
     }
 }
 
-function setCode()
+function hideSubmitButton()
 {
-    let 
+    let submitButton = document.querySelector(".submit")
+    submitButton.style.visibility = "hidden";
 }

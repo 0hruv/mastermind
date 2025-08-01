@@ -118,10 +118,6 @@ function submit()
                 console.log(humanInput[i]);
             }
 
-            console.log('inside submit');
-            console.log(humanInput);
-            console.log(code);
-
             let correctPosition = 0;
             let correctColor = 0;
 
@@ -196,7 +192,6 @@ function setCode()
         sizeOfCopy--;
     }
 
-    console.log(code);
 
     let hiddenCode = document.querySelector(".hidden");
     for (let i = 0 ; i < 5 ; i++)
@@ -224,7 +219,6 @@ function showSubmitButton()
                 humanInput[i] = {};
                 humanInput[i].color = temp.style.backgroundColor;
                 humanInput[i].position = i;
-                console.log(humanInput[i]);
             }
 
             for (color of colours )
@@ -254,7 +248,6 @@ function showSubmitButton()
                 let submitButton = document.querySelector(".submit")
                 submitButton.style.visibility = "visible";
 
-            console.log("check");
 
 
         }
